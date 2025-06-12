@@ -1,0 +1,6 @@
+{
+  "auth": {
+    "register_success": "Usuario registrado correctamente",
+    "login_failed": "Credenciales inválidas"
+  }
+}
