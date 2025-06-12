@@ -20,10 +20,11 @@ enum Role {
 }
 
 model User {
-  id            Int     @id @default(autoincrement())
-  email         String  @unique
-  name          String
-  password_hash String
+  id            Int     @id @default(autoincrement()) @db.SmallInt
+  email         String  @unique @db.VarChar(60)
+  first_name    String  @db.VarChar(20)
+  last_name     String  @db.VarChar(20)
+  password_hash String  @db.VarChar(72)
   role          Role    @default(USER)
   isBlocked     Boolean @default(false)
 }
