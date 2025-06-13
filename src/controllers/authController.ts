@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import * as authService from '../services/auth.service';
-import { omit } from 'zod/v4-mini';
 import { User } from '../generated/prisma';
 
 export const registerUser = async (req: Request, res: Response) => {
@@ -13,4 +12,20 @@ export const registerUser = async (req: Request, res: Response) => {
     console.error(e);
     res.status(500).json({ message: req.t('error.server_error') });
   }
+};
+
+export const loginUser = async (req: Request, res: Response) => {
+  try {
+    const user = await authService.authenticateUser(req.body);
+    if (!user) return res.status(401).json({ message: req.t('auth.login_failed') });
+    const responseData = authService.loginResponse(user);
+    res.status(200).json({ message: req.t('auth.login_success'), ...responseData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: req.t('error.server_error') });
+  }
+};
+
+export const logoutUser = (req: Request, res: Response) => {
+  res.status(200).json({ message: req.t('auth.logout_success') });
 };
