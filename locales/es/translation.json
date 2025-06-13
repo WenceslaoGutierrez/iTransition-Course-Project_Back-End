@@ -1,6 +1,10 @@
 {
   "auth": {
     "register_success": "Usuario registrado correctamente",
-    "login_failed": "Credenciales inválidas"
+    "login_failed": "Credenciales inválidas",
+    "email_in_use": "Email en uso"
+  },
+  "error": {
+    "server_error": "Error interno del servidor"
   }
 }

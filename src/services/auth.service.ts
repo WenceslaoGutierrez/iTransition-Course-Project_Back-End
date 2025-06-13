@@ -1,4 +1,3 @@
-import { create } from 'domain';
 import { PrismaClient, User } from '../generated/prisma/client';
 import bcrypt from 'bcrypt';
 const jwt = require('jsonwebtoken');
