@@ -21,3 +21,8 @@ export const hashPassword = async (password: string) => {
 export const verifyPassword = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };
+
+export const prepareUserResponse = (user: User) => {
+  const { password_hash, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+};
