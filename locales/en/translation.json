@@ -1,6 +1,9 @@
 {
   "auth": {
     "register_success": "User registered successfully",
-    "login_failed": "Invalid credentials"
+    "login_success": "Inicio de sesión exitoso",
+    "login_failed": "Invalid credentials",
+    "email_in_use": "El email está en uso",
+    "logout_success": "Sesión cerrada correctamente"
   }
 }
