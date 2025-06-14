@@ -8,5 +8,13 @@
   },
   "error": {
     "server_error": "Error interno del servidor"
+  },
+  "validation": {
+    "name_required": "El nombre es requerido",
+    "name_min_length": "El nombre debe tener al menos 1 caracter",
+    "email_required": "El email es requerido",
+    "email_invalid": "El formato del email no es válido",
+    "password_required": "La contraseña es requerida",
+    "password_min_length": "La contraseña debe tener al menos 1 caracter"
   }
 }
