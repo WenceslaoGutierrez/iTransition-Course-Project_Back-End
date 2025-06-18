@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { PrismaClient, User } from '../generated/prisma';
+import { string } from 'zod/v4';
 const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
@@ -37,11 +38,20 @@ const findValidUserById = async (userId: number): Promise<Omit<User, 'password'>
 
 export const protect = async (req: Request, res: Response, next: NextFunction) => {
   const token = getTokenFromHeader(req);
-  if (!token) return res.status(401).json({ message: req.t('auth.unauthorized_no_token') });
+  if (!token) {
+    res.status(401).json({ message: req.t('auth.unauthorized_no_token') });
+    return;
+  }
   const decoded = verifyAndDecodeToken(token);
-  if (!decoded) return res.status(401).json({ message: req.t('auth.token_not_valid') });
+  if (!decoded) {
+    res.status(401).json({ message: req.t('auth.token_not_valid') });
+    return;
+  }
   const user = await findValidUserById(decoded.userId);
-  if (!user) return res.status(401).json({ message: req.t('auth.unauthorized') });
+  if (!user) {
+    res.status(401).json({ message: req.t('auth.unauthorized') });
+    return;
+  }
   req.user = user;
   next();
 };
