@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from './generated/prisma';
 import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import i18next from './config/i18n.config';
