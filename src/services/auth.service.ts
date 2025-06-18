@@ -23,7 +23,7 @@ export const verifyPassword = async (password: string, hashedPassword: string) =
 };
 
 export const prepareUserResponse = (user: User) => {
-  const { password_hash, ...userWithoutPassword } = user;
+  const { password, ...userWithoutPassword } = user;
   return userWithoutPassword;
 };
 
@@ -36,15 +36,15 @@ export const findUserByEmail = async (email: string) => {
 };
 
 export const registrationProcess = async (userData: Omit<User, 'id' | 'role' | 'isBlocked'>) => {
-  const hashedPassword = await hashPassword(userData.password_hash);
-  const newUser = await createUser({ ...userData, password_hash: hashedPassword });
+  const hashedPassword = await hashPassword(userData.password);
+  const newUser = await createUser({ ...userData, password: hashedPassword });
   return prepareUserResponse(newUser);
 };
 
-export const authenticateUser = async (credentials: Pick<User, 'email' | 'password_hash'>) => {
+export const authenticateUser = async (credentials: Pick<User, 'email' | 'password'>) => {
   const user = await findUserByEmail(credentials.email);
   if (!user) return null;
-  const isPasswordCorrect = await verifyPassword(credentials.password_hash, user.password_hash);
+  const isPasswordCorrect = await verifyPassword(credentials.password, user.password);
   if (!isPasswordCorrect) return null;
   return user;
 };
