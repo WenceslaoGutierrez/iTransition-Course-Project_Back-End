@@ -1,9 +1,20 @@
 {
   "auth": {
     "register_success": "User registered successfully",
-    "login_success": "Inicio de sesión exitoso",
+    "login_success": "Successfull Log In",
     "login_failed": "Invalid credentials",
-    "email_in_use": "El email está en uso",
-    "logout_success": "Sesión cerrada correctamente"
+    "email_in_use": "Email Already In Use",
+    "logout_success": "Successfull Log out"
+  },
+  "error": {
+    "server_error": "Internal Server Error"
+  },
+  "validation": {
+    "name_required": "Name is required",
+    "name_min_length": "Name's lenght must be at least 1 character",
+    "email_required": "Email is required",
+    "email_invalid": "Invalid email format",
+    "password_required": "Password is required",
+    "password_min_length": "Password's lenght must be at least 1 character"
   }
 }
