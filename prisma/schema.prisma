@@ -20,11 +20,137 @@ enum Role {
 }
 
 model User {
-  id        Int     @id @default(autoincrement()) @db.SmallInt
-  email     String  @unique @db.VarChar(60)
-  firstName String  @map("first_name") @db.VarChar(20)
-  lastName  String  @map("last_name") @db.VarChar(20)
-  password  String  @map("password_hash") @db.VarChar(72)
-  role      Role    @default(USER)
-  isBlocked Boolean @default(false) @map("is_blocked")
+  id        Int        @id @default(autoincrement()) @db.SmallInt
+  email     String     @unique @db.VarChar(60)
+  firstName String     @map("first_name") @db.VarChar(20)
+  lastName  String     @map("last_name") @db.VarChar(20)
+  password  String     @map("password_hash") @db.VarChar(72)
+  role      Role       @default(USER)
+  isBlocked Boolean    @default(false) @map("is_blocked")
+  templates Template[]
+
+  //TO DO
+  /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * forms           Form[]
+   * comments        Comment[]
+   * likes           Like[]
+   * templateAccess  TemplateAccess[]
+   */
+}
+
+model Template {
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String
+  imageUrl     String?
+  isPublic     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  displayOrder String?  @map("display_order")
+
+  // Relations 
+  author   User  @relation(fields: [authorId], references: [id])
+  authorId Int
+  topic    Topic @relation(fields: [topicId], references: [id])
+  topicId  Int
+  //TO DO
+  //tags            TemplateTag[]
+  //forms           Form[]
+  //comments        Comment[]
+  //likes           Like[]
+  //restrictedUsers TemplateAccess[]
+
+  // String
+  stringQ1Active        Boolean @default(false) @map("string_q1_active")
+  stringQ1Title         String? @map("string_q1_title") @db.VarChar(255)
+  stringQ1Description   String? @map("string_q1_description") @db.Text
+  stringQ1ShowInResults Boolean @default(false) @map("string_q1_show_in_results")
+  stringQ2Active        Boolean @default(false) @map("string_q2_active")
+  stringQ2Title         String? @map("string_q2_title") @db.VarChar(255)
+  stringQ2Description   String? @map("string_q2_description") @db.Text
+  stringQ2ShowInResults Boolean @default(false) @map("string_q2_show_in_results")
+  stringQ3Active        Boolean @default(false) @map("string_q3_active")
+  stringQ3Title         String? @map("string_q3_title") @db.VarChar(255)
+  stringQ3Description   String? @map("string_q3_description") @db.Text
+  stringQ3ShowInResults Boolean @default(false) @map("string_q3_show_in_results")
+  stringQ4Active        Boolean @default(false) @map("string_q4_active")
+  stringQ4Title         String? @map("string_q4_title") @db.VarChar(255)
+  stringQ4Description   String? @map("string_q4_description") @db.Text
+  stringQ4ShowInResults Boolean @default(false) @map("string_q4_show_in_results")
+
+  // Text
+  textQ1Active        Boolean @default(false) @map("text_q1_active")
+  textQ1Title         String? @map("text_q1_title") @db.VarChar(255)
+  textQ1Description   String? @map("text_q1_description") @db.Text
+  textQ1ShowInResults Boolean @default(false) @map("text_q1_show_in_results")
+  textQ2Active        Boolean @default(false) @map("text_q2_active")
+  textQ2Title         String? @map("text_q2_title") @db.VarChar(255)
+  textQ2Description   String? @map("text_q2_description") @db.Text
+  textQ2ShowInResults Boolean @default(false) @map("text_q2_show_in_results")
+  textQ3Active        Boolean @default(false) @map("text_q3_active")
+  textQ3Title         String? @map("text_q3_title") @db.VarChar(255)
+  textQ3Description   String? @map("text_q3_description") @db.Text
+  textQ3ShowInResults Boolean @default(false) @map("text_q3_show_in_results")
+  textQ4Active        Boolean @default(false) @map("text_q4_active")
+  textQ4Title         String? @map("text_q4_title") @db.VarChar(255)
+  textQ4Description   String? @map("text_q4_description") @db.Text
+  textQ4ShowInResults Boolean @default(false) @map("text_q4_show_in_results")
+
+  // Int
+  integerQ1Active        Boolean @default(false) @map("integer_q1_active")
+  integerQ1Title         String? @map("integer_q1_title") @db.VarChar(255)
+  integerQ1Description   String? @map("integer_q1_description") @db.Text
+  integerQ1ShowInResults Boolean @default(false) @map("integer_q1_show_in_results")
+  integerQ2Active        Boolean @default(false) @map("integer_q2_active")
+  integerQ2Title         String? @map("integer_q2_title") @db.VarChar(255)
+  integerQ2Description   String? @map("integer_q2_description") @db.Text
+  integerQ2ShowInResults Boolean @default(false) @map("integer_q2_show_in_results")
+  integerQ3Active        Boolean @default(false) @map("integer_q3_active")
+  integerQ3Title         String? @map("integer_q3_title") @db.VarChar(255)
+  integerQ3Description   String? @map("integer_q3_description") @db.Text
+  integerQ3ShowInResults Boolean @default(false) @map("integer_q3_show_in_results")
+  integerQ4Active        Boolean @default(false) @map("integer_q4_active")
+  integerQ4Title         String? @map("integer_q4_title") @db.VarChar(255)
+  integerQ4Description   String? @map("integer_q4_description") @db.Text
+  integerQ4ShowInResults Boolean @default(false) @map("integer_q4_show_in_results")
+
+  // Checkbox
+  checkboxQ1Active        Boolean @default(false) @map("checkbox_q1_active")
+  checkboxQ1Title         String? @map("checkbox_q1_title") @db.VarChar(255)
+  checkboxQ1Description   String? @map("checkbox_q1_description") @db.Text
+  checkboxQ1ShowInResults Boolean @default(false) @map("checkbox_q1_show_in_results")
+  checkboxQ2Active        Boolean @default(false) @map("checkbox_q2_active")
+  checkboxQ2Title         String? @map("checkbox_q2_title") @db.VarChar(255)
+  checkboxQ2Description   String? @map("checkbox_q2_description") @db.Text
+  checkboxQ2ShowInResults Boolean @default(false) @map("checkbox_q2_show_in_results")
+  checkboxQ3Active        Boolean @default(false) @map("checkbox_q3_active")
+  checkboxQ3Title         String? @map("checkbox_q3_title") @db.VarChar(255)
+  checkboxQ3Description   String? @map("checkbox_q3_description") @db.Text
+  checkboxQ3ShowInResults Boolean @default(false) @map("checkbox_q3_show_in_results")
+  checkboxQ4Active        Boolean @default(false) @map("checkbox_q4_active")
+  checkboxQ4Title         String? @map("checkbox_q4_title") @db.VarChar(255)
+  checkboxQ4Description   String? @map("checkbox_q4_description") @db.Text
+  checkboxQ4ShowInResults Boolean @default(false) @map("checkbox_q4_show_in_results")
+}
+
+model Topic {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  templates Template[]
 }
