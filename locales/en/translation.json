@@ -15,6 +15,12 @@
     "email_required": "Email is required",
     "email_invalid": "Invalid email format",
     "password_required": "Password is required",
-    "password_min_length": "Password's lenght must be at least 1 character"
+    "password_min_length": "Password's lenght must be at least 1 character",
+    "title_required": "A template title is required",
+    "title_min_length": "Title's lenght must be at least 1 character",
+    "invalid_url": "Please enter a valid image URL",
+    "isPublic_required": "You must specify if the template is public or restricted",
+    "topicId_required": "A topic must be selected for the template",
+    "tag_not_empty": "Tags cannot be empty"
   }
 }

@@ -15,6 +15,12 @@
     "email_required": "El email es requerido",
     "email_invalid": "El formato del email no es válido",
     "password_required": "La contraseña es requerida",
-    "password_min_length": "La contraseña debe tener al menos 1 caracter"
+    "password_min_length": "La contraseña debe tener al menos 1 caracter",
+    "title_required": "El título de la plantilla es requerido",
+    "title_min_length": "El título debe tener al menos 1 caracter",
+    "invalid_url": "Por favor, introduce una URL de imagen válida",
+    "isPublic_required": "Debes especificar si la plantilla es pública o restringida",
+    "topicId_required": "Es necesario seleccionar un tema para la plantilla",
+    "tag_not_empty": "Las etiquetas no pueden estar vacías"
   }
 }
