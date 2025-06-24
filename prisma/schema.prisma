@@ -46,7 +46,7 @@ model Template {
   displayOrder String?  @map("display_order")
 
   // Relations 
-  author   User  @relation(fields: [authorId], references: [id])
+  author   User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int   @map("author_id")
   topic    Topic @relation(fields: [topicId], references: [id])
   topicId  Int   @map("topic_id")
@@ -143,7 +143,7 @@ model Tag {
 }
 
 model TemplateTag {
-  template   Template @relation(fields: [templateId], references: [id])
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
   templateId Int
   tag        Tag      @relation(fields: [tagId], references: [id])
   tagId      Int
@@ -153,10 +153,10 @@ model TemplateTag {
 
 model Form {
   id         Int      @id @default(autoincrement()) @db.SmallInt
-  User       User     @relation(fields: [userId], references: [id])
+  User       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int      @db.SmallInt
   createdAt  DateTime @default(now()) @map("created_at")
-  Template   Template @relation(fields: [templateId], references: [id])
+  Template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
   templateId Int      @map("template_id")
 
   // SL String
@@ -188,25 +188,25 @@ model Comment {
   id         Int      @id @default(autoincrement()) @db.SmallInt
   text       String   @db.VarChar(255)
   createdAt  DateTime @default(now()) @map("created_at")
-  author     User     @relation(fields: [authorId], references: [id])
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId   Int      @map("author_id")
-  template   Template @relation(fields: [templateId], references: [id])
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
   templateId Int      @map("template_id")
 }
 
 model Like {
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int      @map("user_id")
-  template   Template @relation(fields: [templateId], references: [id])
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
   templateId Int      @map("template_id")
 
   @@id([userId, templateId])
 }
 
 model TemplateAccess {
-  template   Template @relation("TemplateAccessRelation", fields: [templateId], references: [id])
+  template   Template @relation("TemplateAccessRelation", fields: [templateId], references: [id], onDelete: Cascade)
   templateId Int      @map("template_id")
-  user       User     @relation("TemplateAccessRelation", fields: [userId], references: [id])
+  user       User     @relation("TemplateAccessRelation", fields: [userId], references: [id], onDelete: Cascade)
   userId     Int      @map("user_id")
 
   @@id([templateId, userId])
