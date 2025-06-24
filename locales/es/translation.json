@@ -7,7 +7,8 @@
     "logout_success": "Sesión cerrada correctamente"
   },
   "error": {
-    "server_error": "Error interno del servidor"
+    "server_error": "Error interno del servidor",
+    "template_not_found": "Plantilla no encontrada o no tienes permiso para verla."
   },
   "validation": {
     "name_required": "El nombre es requerido",
@@ -21,6 +22,7 @@
     "invalid_url": "Por favor, introduce una URL de imagen válida",
     "isPublic_required": "Debes especificar si la plantilla es pública o restringida",
     "topicId_required": "Es necesario seleccionar un tema para la plantilla",
-    "tag_not_empty": "Las etiquetas no pueden estar vacías"
+    "tag_not_empty": "Las etiquetas no pueden estar vacías",
+    "invalid_id": "El ID proporcionado no es válido."
   }
 }
