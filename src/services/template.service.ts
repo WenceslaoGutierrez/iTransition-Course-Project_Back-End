@@ -27,3 +27,14 @@ export const createTemplate = async (templateData: any, authorId: number) => {
     return newTemplate;
   });
 };
+
+export const getTemplatesByAuthor = async (authorId: number) => {
+  return prisma.template.findMany({
+    where: { authorId: authorId },
+    include: {
+      topic: { select: { name: true } },
+      _count: { select: { forms: true, likes: true } }
+    },
+    orderBy: { createdAt: 'desc' }
+  });
+};

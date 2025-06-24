@@ -6,3 +6,9 @@ import * as templateController from '../controllers/template.controller';
 
 const router = Router();
 router.use(protect);
+
+//TO DO
+//CREATE (POST)
+//READ (GET)
+//DELETE()
+//UPDATE()
