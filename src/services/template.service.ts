@@ -83,3 +83,15 @@ export const findTemplateByIdForUser = async (templateId: number, currentUser?: 
   const hasPermission = await checkUserPermission(template, currentUser);
   return hasPermission ? template : null;
 };
+
+export const updateTemplate = async (template: Template, updateData: any, currentUser: Omit<User, 'password'>): Promise<Template | string> => {
+  const hasWritePermission = isUserTheAuthor(template, currentUser) || isUserAdmin(currentUser);
+  if (!hasWritePermission) return 'auth.forbidden';
+  return prisma.template.update({ where: { id: template.id }, data: updateData });
+};
+
+export const deleteTemplate = async (template: Template, currentUser: Omit<User, 'password'>): Promise<string | void> => {
+  const hasWritePermission = isUserTheAuthor(template, currentUser) || isUserAdmin(currentUser);
+  if (!hasWritePermission) return 'auth.forbidden';
+  await prisma.template.delete({ where: { id: template.id } });
+};
