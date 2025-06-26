@@ -11,8 +11,6 @@ export const createTemplate = async (req: Request, res: Response) => {
   }
 };
 
-//READ
-
 export const getMyTemplates = async (req: Request, res: Response) => {
   try {
     const authorId = req.user!.id;
@@ -25,12 +23,30 @@ export const getMyTemplates = async (req: Request, res: Response) => {
 };
 
 export const getTemplateById = async (req: Request, res: Response) => {
+  res.status(200).json(req.template);
+};
+
+export const updateTemplate = async (req: Request, res: Response) => {
   try {
-    const templateId = parseInt(req.params.id, 10);
-    if (isNaN(templateId)) return res.status(400).json({ message: req.t('validation.invalid_id') });
-    const template = await templateService.findTemplateByIdForUser(templateId, req.user);
-    if (!template) return res.status(404).json({ message: req.t('error.template_not_found') });
-    res.status(200).json(template);
+    const result = await templateService.updateTemplate(req.template!, req.body, req.user!);
+    if (typeof result === 'string') {
+      res.status(403).json({ message: req.t(result) });
+      return;
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: req.t('error.server_error') });
+  }
+};
+
+export const deleteTemplate = async (req: Request, res: Response) => {
+  try {
+    const result = await templateService.deleteTemplate(req.template!, req.user!);
+    if (result) {
+      res.status(403).json({ message: req.t(result) });
+      return;
+    }
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({ message: req.t('error.server_error') });
   }
