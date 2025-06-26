@@ -4,7 +4,8 @@
     "login_success": "Successfull Log In",
     "login_failed": "Invalid credentials",
     "email_in_use": "Email Already In Use",
-    "logout_success": "Successfull Log out"
+    "logout_success": "Successfull Log out",
+    "forbidden": "You don't have permission to do this action"
   },
   "error": {
     "server_error": "Internal Server Error",

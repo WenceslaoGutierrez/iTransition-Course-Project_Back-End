@@ -4,7 +4,8 @@
     "login_success": "Inicio de sesión exitoso",
     "login_failed": "Credenciales inválidas",
     "email_in_use": "El email está en uso",
-    "logout_success": "Sesión cerrada correctamente"
+    "logout_success": "Sesión cerrada correctamente",
+    "forbidden": "No tienes permiso para esta acción"
   },
   "error": {
     "server_error": "Error interno del servidor",
